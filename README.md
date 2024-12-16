@@ -9,7 +9,7 @@ Welcome to the repository for the open source CAE EnvVars library!
 ```xml
 <dependency>
   <groupId>com.clean-arch-enablers</groupId>
-  <artifactId>env-vars</artifactId>
+  <artifactId>cae-env-vars</artifactId>
   <version>${version}</version>
 </dependency>
 ```
