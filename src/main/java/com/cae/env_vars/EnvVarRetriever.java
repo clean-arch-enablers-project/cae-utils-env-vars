@@ -16,20 +16,20 @@ public class EnvVarRetriever {
 
     public static Integer getEnvVarByNameAsInteger(String name){
         return Trier.of(() -> Integer.valueOf(EnvVarRetriever.getEnvVarByNameAsString(name)))
-                .setHandlerForUnexpectedException(unexpected -> new UnexpectedException(unexpected, name, Integer.class))
-                .finishAndExecuteAction();
+                .setUnexpectedExceptionHandler(unexpected -> new UnexpectedException(unexpected, name, Integer.class))
+                .execute();
     }
 
     public static Boolean getEnvVarByNameAsBoolean(String name){
         return Trier.of(() -> Boolean.valueOf(EnvVarRetriever.getEnvVarByNameAsString(name)))
-                .setHandlerForUnexpectedException(unexpected -> new UnexpectedException(unexpected, name, Boolean.class))
-                .finishAndExecuteAction();
+                .setUnexpectedExceptionHandler(unexpected -> new UnexpectedException(unexpected, name, Boolean.class))
+                .execute();
     }
 
     public static <T> T getEnvVarByName(String name, Class<T> typeToReturn){
         return Trier.of(() -> EnvVarRetriever.tryToGetEnvVar(name, typeToReturn))
-                .setHandlerForUnexpectedException(unexpectedException -> new UnexpectedException(unexpectedException, name, typeToReturn))
-                .finishAndExecuteAction();
+                .setUnexpectedExceptionHandler(unexpectedException -> new UnexpectedException(unexpectedException, name, typeToReturn))
+                .execute();
     }
 
     private static <T> T tryToGetEnvVar(String name, Class<T> typeToReturn) {
