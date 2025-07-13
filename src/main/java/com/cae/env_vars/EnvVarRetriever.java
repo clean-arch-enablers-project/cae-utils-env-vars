@@ -16,19 +16,19 @@ public class EnvVarRetriever {
 
     public static Integer getEnvVarByNameAsInteger(String name){
         return Trier.of(() -> Integer.valueOf(EnvVarRetriever.getEnvVarByNameAsString(name)))
-                .setUnexpectedExceptionHandler(unexpected -> new UnexpectedException(unexpected, name, Integer.class))
+                .onUnexpectedExceptions(unexpected -> new UnexpectedException(unexpected, name, Integer.class))
                 .execute();
     }
 
     public static Boolean getEnvVarByNameAsBoolean(String name){
         return Trier.of(() -> Boolean.valueOf(EnvVarRetriever.getEnvVarByNameAsString(name)))
-                .setUnexpectedExceptionHandler(unexpected -> new UnexpectedException(unexpected, name, Boolean.class))
+                .onUnexpectedExceptions(unexpected -> new UnexpectedException(unexpected, name, Boolean.class))
                 .execute();
     }
 
     public static <T> T getEnvVarByName(String name, Class<T> typeToReturn){
         return Trier.of(() -> EnvVarRetriever.tryToGetEnvVar(name, typeToReturn))
-                .setUnexpectedExceptionHandler(unexpectedException -> new UnexpectedException(unexpectedException, name, typeToReturn))
+                .onUnexpectedExceptions(unexpectedException -> new UnexpectedException(unexpectedException, name, typeToReturn))
                 .execute();
     }
 
