@@ -37,7 +37,7 @@
         <dependency>
             <groupId>com.clean-arch-enablers</groupId>
             <artifactId>cae-trier</artifactId>
-            <version>5.0.0</version>
+            <version>6.0.0-RC1</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
